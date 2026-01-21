@@ -104,10 +104,10 @@ header {
 
         &:hover {
           background-color: v.$d-green;
+          font-weight: 500;
         }
 
         &:active {
-          font-weight: bold;
           text-decoration: underline;
         }
 
@@ -118,6 +118,10 @@ header {
           font-weight: 400;
           text-align: center;
           color: v.$l-grey;
+
+          &:hover {
+            background-color: v.$hover-green;
+          }
         }
 
         @media only screen and (min-width: 1200px) {
