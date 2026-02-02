@@ -2,14 +2,14 @@ import { Link } from "react-router-dom";
 
 import { about } from "../../data/about";
 import headshot from "../../assets/headshot.jpg";
+import Name from "./Name/Name";
 import "./Home.scss";
 
 export default function Home() {
   return (
     <>
-      <section className="titles">
-        <h1>{about.name}</h1>
-        <h3>{about.location}</h3>
+      <section className="hero">
+        <Name />
       </section>
       <p className="short-bio">{about.shortBio}</p>
       <section className="btn-container">

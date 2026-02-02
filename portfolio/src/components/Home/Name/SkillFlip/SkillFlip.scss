@@ -1,0 +1,53 @@
+.skill-flip {
+  display: flex;
+  align-items: stretch;
+  margin-left: var(--space-2);
+  height: var(--line-box);
+  min-width: 0;
+  color: var(--color-text);
+}
+
+.skill-viewport {
+  font-size: calc(var(--rest-size) * 0.28);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  line-height: 1.15em;
+
+  height: 100%;
+  overflow: hidden;
+
+  padding-left: var(--space-1);
+  border-left: 2px solid var(--color-accent);
+}
+
+.skill-track {
+  display: flex;
+  flex-direction: column;
+
+  transform: translateY(calc(-1 * var(--index) * var(--line-box)));
+  transition: transform var(--transition-ms) ease;
+  will-change: transform;
+}
+
+.skill-track.is-resetting {
+  transition: none;
+}
+
+.skill-item {
+  display: flex;
+  align-items: center;
+  height: var(--line-box);
+  white-space: normal;
+  max-width: 18ch;
+
+  overflow: hidden;
+  text-overflow: balance;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skill-track {
+    transition: none;
+    transform: none;
+  }
+}

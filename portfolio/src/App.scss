@@ -1,7 +1,67 @@
+@use "./styles/variables.scss" as v;
+
 #root {
   .app-container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 1rem;
   }
+}
+
+/* Base tokens */
+:root {
+  /* Text & surfaces */
+  --color-bg: #{v.$l-grey};
+  --color-text: #{v.$d-green};
+  --color-surface: #{v.$l-green};
+
+  /* Primary interaction */
+  --color-primary: #{v.$d-green};
+  --color-primary-hover: #{v.$hover-green};
+
+  /* Accent system (THIS is what the G toggles) */
+  --color-accent: #{v.$yellow};
+  --color-accent-soft: rgba(203, 170, 28, 0.18);
+
+  /* Density tokens */
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2.5rem;
+
+  /* Rounding + shadows for cards/buttons */
+  --radius: 16px;
+
+  /* Transition effects for accent changes */
+  --ui-transition: 220ms;
+  --ui-ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  .interactive-g,
+  .rest {
+    transition:
+      color var(--ui-transition) var(--ui-ease),
+      background-color var(--ui-transition) var(--ui-ease),
+      border-color var(--ui-transition) var(--ui-ease),
+      box-shadow var(--ui-transition) var(--ui-ease),
+      outline-color var(--ui-transition) var(--ui-ease),
+      fill var(--ui-transition) var(--ui-ease),
+      stroke var(--ui-transition) var(--ui-ease);
+  }
+}
+
+/* State 1: Accent mode */
+html[data-ui="1"],
+html[data-ui="2"] {
+  --color-bg: #{v.$d-grey};
+  --color-text: #{v.$l-green};
+  --color-accent: #{v.$orange};
+  --color-accent-soft: rgba(248, 138, 56, 0.18);
+}
+
+/* State 2: Accent + Compact density */
+html[data-ui="2"] {
+  --space-1: 0.3rem;
+  --space-2: 0.75rem;
+  --space-3: 1.1rem;
+  --space-4: 1.8rem;
 }

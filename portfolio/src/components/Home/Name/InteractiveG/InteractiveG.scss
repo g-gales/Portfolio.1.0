@@ -1,0 +1,42 @@
+.interactive-g {
+  /* Look like typography, not a button */
+  appearance: none;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  padding: 0;
+  margin: 0;
+
+  cursor: pointer;
+  line-height: 1;
+  display: inline-block;
+
+  /* magnetic vars */
+  --tx: 0px;
+  --ty: 0px;
+  --rot: 0deg;
+
+  transform: translate3d(var(--tx), var(--ty), 0) rotate(var(--rot));
+  transition: transform 120ms ease-out;
+
+  /* subtle affordance */
+  text-shadow: 0 0 0 transparent;
+
+  &:hover {
+    text-shadow: 0 0 0.01px currentColor;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 6px;
+    border-radius: 10px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .interactive-g {
+    transition: none;
+    transform: none !important;
+  }
+}

@@ -1,0 +1,153 @@
+.animated-name {
+  display: inline-block;
+  position: relative;
+
+  --initial-size: 52px;
+  --rest-size: 52px;
+  --line-gap: 8px;
+  --line-box: calc(var(--rest-size) * 1.15);
+  --name-line-height: 1.05em;
+
+  --drop-delay: 0.2s;
+  --drop-duration: 0.5s;
+  --reveal-delay: 0.8s;
+  --reveal-duration: 0.55s;
+
+  .name-line {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    line-height: var(--name-line-height);
+    min-height: var(--line-box);
+    padding-block: 0.05em;
+  }
+
+  .initial {
+    font-size: var(--initial-size);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: var(--name-line-height);
+  }
+
+  .rest {
+    font-size: var(--rest-size);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: var(--name-line-height);
+
+    // Start hidden, then slide in from the initial
+    opacity: 0;
+    transform: translateX(-18px);
+    clip-path: inset(0 100% 0 0);
+
+    animation: nameReveal var(--reveal-duration) ease forwards;
+    animation-delay: var(--reveal-delay);
+  }
+
+  // First G visible
+  .line-1 {
+    position: relative;
+  }
+
+  // Second line: the dropping G starts stacked on the first line
+  .line-2 {
+    position: relative;
+    margin-top: var(--line-gap);
+  }
+
+  .initial-drop-wrapper {
+    display: inline-block;
+    // Start at the first line position, then drop into place
+    transform: translateY(calc(-1 * (var(--initial-size) + var(--line-gap))));
+    opacity: 0;
+
+    animation: dropIn var(--drop-duration) cubic-bezier(0.2, 0.8, 0.2, 1)
+      forwards;
+    animation-delay: var(--drop-delay);
+  }
+
+  // Make the second line reveal after the drop
+  .rest-2 {
+    animation-delay: calc(var(--reveal-delay) + 0.05s);
+  }
+}
+
+// Animations
+@keyframes dropIn {
+  0% {
+    transform: translateY(calc(-1 * (var(--initial-size) + var(--line-gap))));
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes nameReveal {
+  0% {
+    opacity: 0;
+    transform: translateX(-18px);
+    clip-path: inset(0 100% 0 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@media only screen and (min-width: 480px) {
+  .animated-name {
+    --initial-size: 72px;
+    --rest-size: 72px;
+    --line-gap: 12px;
+    --line-box: calc(var(--rest-size) * 1.2);
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .animated-name {
+    --initial-size: 96px;
+    --rest-size: 96px;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .animated-name {
+    --initial-size: 120px;
+    --rest-size: 120px;
+  }
+}
+
+/* Accessible: reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  .animated-name * {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .animated-name .rest {
+    opacity: 1;
+    transform: none;
+    clip-path: none;
+  }
+
+  .animated-name .initial-drop-wrapper {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Screen-reader only utility */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

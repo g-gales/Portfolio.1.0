@@ -1,5 +1,4 @@
 import { Routes, Route, useLocation } from "react-router-dom";
-import Header from "./components/Header/Header";
 import Home from "./components/Home/Home";
 import "./App.scss";
 
@@ -17,18 +16,14 @@ function Connect() {
 
 function App() {
   return (
-    <>
-      <Header />
-
-      <main className="app-container">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/connect" element={<Connect />} />
-          <Route path="/projects" element={<Projects />} />
-        </Routes>
-      </main>
-    </>
+    <main className="app-container">
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/connect" element={<Connect />} />
+        <Route path="/projects" element={<Projects />} />
+      </Routes>
+    </main>
   );
 }
 
